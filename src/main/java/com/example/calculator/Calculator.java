@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
-
 import java.util.Objects;
 
 public class Calculator extends Application {
@@ -21,16 +20,43 @@ public class Calculator extends Application {
         final String[] values = {"0","0"};
         final String[] old = {"",""};
         final String[] choice = {""};
+        final String[] oldChoice = {""};
         final String[] result = {""};
         final boolean[] input = {true};
 
-        Text text = new Text(); {
-            text.setFont(Font.font("Arial", FontWeight.BOLD,35));
-            text.setFill(Paint.valueOf("White"));
-            text.setTextAlignment(TextAlignment.RIGHT);
-            text.setLayoutX(300);
-            text.setText(values[0]);
+        Text resultText = new Text(); {
+            resultText.setFont(Font.font("Arial", FontWeight.BOLD,50));
+            resultText.setFill(Paint.valueOf("white"));
+            resultText.setTextAlignment(TextAlignment.RIGHT);
+            resultText.setLayoutX(300);
+            resultText.setText(values[0]);
         }
+        Text calculationsText = new Text(); {
+            calculationsText.setFont(Font.font("Arial", FontWeight.BOLD,20));
+            calculationsText.setFill(Paint.valueOf("#888888"));
+            calculationsText.setTextAlignment(TextAlignment.RIGHT);
+            calculationsText.setLayoutX(300);
+            calculationsText.setText("");
+        }
+
+        /*class CalcText {
+            interface myInterface{
+                void run();
+            }
+            void calcText() {
+                myInterface r = () -> {
+                    if(choice[0].equals("")){
+                        calculationsText.setText(values[0]);
+                    } else if (!values[1].equals("0") && !values[0].equals("0")) {
+                        calculationsText.setText(values[1] + " " + choice[0] + " " + values[0]);
+                    }else if (values[0].equals("0")) {
+                        calculationsText.setText(values[1] + " " + choice[0]);
+                    }
+                };
+                r.run();
+            }
+        }
+        CalcText calcText = new CalcText();*/
 
         Button clear = new Button("C"); {
             clear.getStyleClass().add("symbols");
@@ -39,7 +65,10 @@ public class Calculator extends Application {
             clear.setOnAction(actionEvent -> {
                 values[0] = "0";
                 values[1] = "0";
-                text.setText(values[0]);
+                old[0] = "0";
+                old[1] = "0";
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
             });
         }
         Button delete = new Button("⌫"); {
@@ -49,7 +78,8 @@ public class Calculator extends Application {
             delete.setOnAction(actionEvent -> {
                 values[0] = values[0].substring(0,values[0].length()-1);
                 if(values[0].equals("")) values[0] = "0";
-                text.setText(values[0]);
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
             });
         }
 
@@ -65,7 +95,8 @@ public class Calculator extends Application {
                         values[1] = result[0];
                     }
                     values[0] = "0";
-                    text.setText(values[0]);
+                    resultText.setText(values[0]);
+                    /*calcText.calcText();*/
                 }
             });
         }
@@ -81,7 +112,8 @@ public class Calculator extends Application {
                         values[1] = result[0];
                     }
                     values[0] = "0";
-                    text.setText(values[0]);
+                    resultText.setText(values[0]);
+                    /*calcText.calcText();*/
                 }
             });
         }
@@ -97,7 +129,8 @@ public class Calculator extends Application {
                         values[1] = result[0];
                     }
                     values[0] = "0";
-                    text.setText(values[0]);
+                    resultText.setText(values[0]);
+                    /*calcText.calcText();*/
                 }
             });
         }
@@ -113,20 +146,22 @@ public class Calculator extends Application {
                         values[1] = result[0];
                     }
                     values[0] = "0";
-                    text.setText(values[0]);
+                    resultText.setText(values[0]);
+                    /*calcText.calcText();*/
                 }
             });}
 
         Button equals = new Button("="); {
             equals.setId("equals");
-            equals.getStyleClass().add("wide");
+            equals.getStyleClass().add("symbols");
             equals.setFont(Font.font("Arial",FontWeight.BOLD,35));
             equals.setOnAction(actionEvent -> {
                 if(input[0]) {
                     result[0] = calculate(values,choice);
                     old[0] = values[0];
+                    oldChoice[0] = choice[0];
                 } else {
-                    result[0] = calculate(old,choice);
+                    result[0] = calculate(old,oldChoice);
                 }
                 old[1] = result[0];
 
@@ -134,7 +169,7 @@ public class Calculator extends Application {
                 values[0] = "0";
                 values[1] = "0";
                 input[0] = false;
-                text.setText(result[0]);
+                resultText.setText(result[0]);
 
                 if(result[0].equals("Can't divide by 0")){
                     addition.getStyleClass().remove("symbols");
@@ -181,7 +216,8 @@ public class Calculator extends Application {
                     values[0] += "1";
                 }
                 input[0] = true;
-                text.setText(values[0]);
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
             });
         }
         Button two = new Button("2"); {
@@ -195,8 +231,10 @@ public class Calculator extends Application {
                     values[0] += "2";
                 }
                 input[0] = true;
-                text.setText(values[0]);
-            });}
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
+            });
+        }
         Button three = new Button("3"); {
             three.getStyleClass().add("numbers");
             three.setFont(Font.font("Arial",FontWeight.BOLD,35));
@@ -208,8 +246,10 @@ public class Calculator extends Application {
                     values[0] += "3";
                 }
                 input[0] = true;
-                text.setText(values[0]);
-            });}
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
+            });
+        }
         Button four = new Button("4"); {
             four.getStyleClass().add("numbers");
             four.setFont(Font.font("Arial",FontWeight.BOLD,35));
@@ -221,8 +261,10 @@ public class Calculator extends Application {
                     values[0] += "4";
                 }
                 input[0] = true;
-                text.setText(values[0]);
-            });}
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
+            });
+        }
         Button five = new Button("5"); {
             five.getStyleClass().add("numbers");
             five.setFont(Font.font("Arial",FontWeight.BOLD,35));
@@ -234,8 +276,10 @@ public class Calculator extends Application {
                     values[0] += "5";
                 }
                 input[0] = true;
-                text.setText(values[0]);
-            });}
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
+            });
+        }
         Button six = new Button("6"); {
             six.getStyleClass().add("numbers");
             six.setFont(Font.font("Arial",FontWeight.BOLD,35));
@@ -247,8 +291,10 @@ public class Calculator extends Application {
                     values[0] += "6";
                 }
                 input[0] = true;
-                text.setText(values[0]);
-            });}
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
+            });
+        }
         Button seven = new Button("7"); {
             seven.getStyleClass().add("numbers");
             seven.setFont(Font.font("Arial",FontWeight.BOLD,35));
@@ -260,8 +306,10 @@ public class Calculator extends Application {
                     values[0] += "7";
                 }
                 input[0] = true;
-                text.setText(values[0]);
-            });}
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
+            });
+        }
         Button eight = new Button("8"); {
             eight.getStyleClass().add("numbers");
             eight.setFont(Font.font("Arial",FontWeight.BOLD,35));
@@ -273,8 +321,10 @@ public class Calculator extends Application {
                     values[0] += "8";
                 }
                 input[0] = true;
-                text.setText(values[0]);
-            });}
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
+            });
+        }
         Button nine = new Button("9"); {
             nine.getStyleClass().add("numbers");
             nine.setFont(Font.font("Arial",FontWeight.BOLD,35));
@@ -286,8 +336,10 @@ public class Calculator extends Application {
                     values[0] += "9";
                 }
                 input[0] = true;
-                text.setText(values[0]);
-            });}
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
+            });
+        }
         Button zero = new Button("0"); {
             zero.getStyleClass().add("numbers");
             zero.setFont(Font.font("Arial",FontWeight.BOLD,35));
@@ -299,15 +351,30 @@ public class Calculator extends Application {
                     values[0] += "0";
                 }
                 input[0] = true;
-                text.setText(values[0]);
-            });}
-
-        BorderPane screen = new BorderPane(); {
-            screen.setId("screen");
-            screen.setRight(text);
-            screen.setMinHeight(60);
-            screen.setMaxHeight(60);
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
+            });
         }
+        Button dot = new Button("."); {
+            dot.getStyleClass().add("numbers");
+            dot.setFont(Font.font("Arial",FontWeight.BOLD,35));
+            dot.setOnAction(actionEvent -> {
+                change.change();
+                values[0] += ".";
+                input[0] = true;
+                resultText.setText(values[0]);
+                /*calcText.calcText();*/
+            });
+        }
+
+        BorderPane resultScreen = new BorderPane(); {
+            resultScreen.setId("resultScreen");
+            resultScreen.setRight(resultText);
+        }
+        /*BorderPane calculationsScreen = new BorderPane(); {
+            calculationsScreen.setId("calculationsScreen");
+            calculationsScreen.setRight(calculationsText);
+        }*/
         GridPane controls = new GridPane(); {
             controls.setId("controls");
             controls.setHgap(5);
@@ -328,14 +395,15 @@ public class Calculator extends Application {
             controls.add(seven,0,3);
             controls.add(eight,1,3);
             controls.add(nine,2,3);
-            controls.add(zero,2,4);
+            controls.add(zero,1,4);
+            controls.add(dot,2,4);
         }
         VBox root = new VBox(); {
             root.setId("root");
-            root.getChildren().addAll(screen,controls);
+            root.getChildren().addAll(/*calculationsScreen,*/resultScreen,controls);
         }
 
-        Scene scene = new Scene(root,435,495);
+        Scene scene = new Scene(root,435,510);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("stylesheet.css")).toExternalForm());
 
         stage.setScene(scene);
@@ -349,7 +417,6 @@ public class Calculator extends Application {
     private String calculate(String[] values, String[] choice){
         float value1 = Float.parseFloat(values[1]);
         float value2 = Float.parseFloat(values[0]);
-
         return switch (choice[0]) {
             case "+" -> String.valueOf(value1 + value2);
             case "-" -> String.valueOf(value1 - value2);

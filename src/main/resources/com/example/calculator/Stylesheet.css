@@ -12,6 +12,7 @@
     -fx-background-color: #2c2c2c;
         -fx-text-fill: #a2a2a2;
 }
+
 .numbers {
     -fx-background-color: #535353;
     -fx-text-fill: white;
@@ -22,6 +23,7 @@
     -fx-background-color: #3b3b3b;
     -fx-text-fill: white;
 }
+
 #equals {
     -fx-background-color: #8b4726;
     -fx-text-fill: white;
@@ -30,18 +32,26 @@
     -fx-background-color: #783717;
     -fx-text-fill: white;
 }
+
+.wide {
+    -fx-pref-height: 80px;
+    -fx-pref-width: 205px;
+}
+
 #root {
     -fx-background-color: #151515;
 }
-#screen {
+#resultScreen {
     -fx-background-color: #3b3b3b;
+    -fx-pref-height: 60px;
     -fx-padding: 10;
+}
+#calculationsScreen {
+    -fx-background-color: #3b3b3b;
+    -fx-pref-height: 20px;
+    -fx-padding: 10 10 0 0;
 }
 #controls {
     -fx-background-color: #151515;
     -fx-padding: 10;
-}
-.wide {
-    -fx-pref-height: 80px;
-    -fx-pref-width: 205px;
 }
