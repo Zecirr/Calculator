@@ -1,6 +1,8 @@
 .symbols {
     -fx-background-color: #3b3b3b;
     -fx-text-fill: white;
+    -fx-pref-height: 80px;
+    -fx-pref-width: 100px;
 }
 .symbols:hover {
     -fx-background-color: #535353;
@@ -13,6 +15,8 @@
 .numbers {
     -fx-background-color: #535353;
     -fx-text-fill: white;
+    -fx-pref-height: 80px;
+    -fx-pref-width: 100px;
 }
 .numbers:hover {
     -fx-background-color: #3b3b3b;
@@ -36,4 +40,8 @@
 #controls {
     -fx-background-color: #151515;
     -fx-padding: 10;
+}
+.wide {
+    -fx-pref-height: 80px;
+    -fx-pref-width: 205px;
 }

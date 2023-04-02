@@ -22,7 +22,7 @@ public class Calculator extends Application {
         final String[] old = {"",""};
         final String[] choice = {""};
         final String[] result = {""};
-        final boolean[] input = {false};
+        final boolean[] input = {true};
 
         Text text = new Text(); {
             text.setFont(Font.font("Arial", FontWeight.BOLD,35));
@@ -32,10 +32,29 @@ public class Calculator extends Application {
             text.setText(values[0]);
         }
 
+        Button clear = new Button("C"); {
+            clear.getStyleClass().add("symbols");
+            clear.getStyleClass().add("wide");
+            clear.setFont(Font.font("Arial",FontWeight.BOLD,35));
+            clear.setOnAction(actionEvent -> {
+                values[0] = "0";
+                values[1] = "0";
+                text.setText(values[0]);
+            });
+        }
+        Button delete = new Button("⌫"); {
+            delete.getStyleClass().add("symbols");
+            delete.getStyleClass().add("wide");
+            delete.setFont(Font.font("Arial",FontWeight.BOLD,35));
+            delete.setOnAction(actionEvent -> {
+                values[0] = values[0].substring(0,values[0].length()-1);
+                if(values[0].equals("")) values[0] = "0";
+                text.setText(values[0]);
+            });
+        }
+
         Button addition = new Button("+"); {
             addition.getStyleClass().add("symbols");
-            addition.setMinHeight(100);
-            addition.setMinWidth(100);
             addition.setFont(Font.font("Arial",FontWeight.BOLD,35));
             addition.setOnAction(actionEvent -> {
                 if(!result[0].equals("Can't divide by 0")) {
@@ -52,8 +71,6 @@ public class Calculator extends Application {
         }
         Button subtraction = new Button("-"); {
             subtraction.getStyleClass().add("symbols");
-            subtraction.setMinHeight(100);
-            subtraction.setMinWidth(100);
             subtraction.setFont(Font.font("Arial",FontWeight.BOLD,35));
             subtraction.setOnAction(actionEvent -> {
                 if(!result[0].equals("Can't divide by 0")) {
@@ -70,8 +87,6 @@ public class Calculator extends Application {
         }
         Button division = new Button("/"); {
             division.getStyleClass().add("symbols");
-            division.setMinHeight(100);
-            division.setMinWidth(100);
             division.setFont(Font.font("Arial", FontWeight.BOLD, 35));
             division.setOnAction(actionEvent -> {
                 if (!result[0].equals("Can't divide by 0")) {
@@ -88,8 +103,6 @@ public class Calculator extends Application {
         }
         Button multiplication = new Button("*"); {
             multiplication.getStyleClass().add("symbols");
-            multiplication.setMinHeight(100);
-            multiplication.setMinWidth(100);
             multiplication.setFont(Font.font("Arial",FontWeight.BOLD,35));
             multiplication.setOnAction(actionEvent -> {
                 if(!result[0].equals("Can't divide by 0")) {
@@ -106,8 +119,7 @@ public class Calculator extends Application {
 
         Button equals = new Button("="); {
             equals.setId("equals");
-            equals.setMinHeight(100);
-            equals.setMinWidth(205);
+            equals.getStyleClass().add("wide");
             equals.setFont(Font.font("Arial",FontWeight.BOLD,35));
             equals.setOnAction(actionEvent -> {
                 if(input[0]) {
@@ -160,8 +172,6 @@ public class Calculator extends Application {
 
         Button one = new Button("1"); {
             one.getStyleClass().add("numbers");
-            one.setMinHeight(100);
-            one.setMinWidth(100);
             one.setFont(Font.font("Arial",FontWeight.BOLD,35));
             one.setOnAction(actionEvent -> {
                 change.change();
@@ -176,8 +186,6 @@ public class Calculator extends Application {
         }
         Button two = new Button("2"); {
             two.getStyleClass().add("numbers");
-            two.setMinHeight(100);
-            two.setMinWidth(100);
             two.setFont(Font.font("Arial",FontWeight.BOLD,35));
             two.setOnAction(actionEvent -> {
                 change.change();
@@ -191,8 +199,6 @@ public class Calculator extends Application {
             });}
         Button three = new Button("3"); {
             three.getStyleClass().add("numbers");
-            three.setMinHeight(100);
-            three.setMinWidth(100);
             three.setFont(Font.font("Arial",FontWeight.BOLD,35));
             three.setOnAction(actionEvent -> {
                 change.change();
@@ -206,8 +212,6 @@ public class Calculator extends Application {
             });}
         Button four = new Button("4"); {
             four.getStyleClass().add("numbers");
-            four.setMinHeight(100);
-            four.setMinWidth(100);
             four.setFont(Font.font("Arial",FontWeight.BOLD,35));
             four.setOnAction(actionEvent -> {
                 change.change();
@@ -221,8 +225,6 @@ public class Calculator extends Application {
             });}
         Button five = new Button("5"); {
             five.getStyleClass().add("numbers");
-            five.setMinHeight(100);
-            five.setMinWidth(100);
             five.setFont(Font.font("Arial",FontWeight.BOLD,35));
             five.setOnAction(actionEvent -> {
                 change.change();
@@ -236,8 +238,6 @@ public class Calculator extends Application {
             });}
         Button six = new Button("6"); {
             six.getStyleClass().add("numbers");
-            six.setMinHeight(100);
-            six.setMinWidth(100);
             six.setFont(Font.font("Arial",FontWeight.BOLD,35));
             six.setOnAction(actionEvent -> {
                 change.change();
@@ -251,8 +251,6 @@ public class Calculator extends Application {
             });}
         Button seven = new Button("7"); {
             seven.getStyleClass().add("numbers");
-            seven.setMinHeight(100);
-            seven.setMinWidth(100);
             seven.setFont(Font.font("Arial",FontWeight.BOLD,35));
             seven.setOnAction(actionEvent -> {
                 change.change();
@@ -266,8 +264,6 @@ public class Calculator extends Application {
             });}
         Button eight = new Button("8"); {
             eight.getStyleClass().add("numbers");
-            eight.setMinHeight(100);
-            eight.setMinWidth(100);
             eight.setFont(Font.font("Arial",FontWeight.BOLD,35));
             eight.setOnAction(actionEvent -> {
                 change.change();
@@ -281,8 +277,6 @@ public class Calculator extends Application {
             });}
         Button nine = new Button("9"); {
             nine.getStyleClass().add("numbers");
-            nine.setMinHeight(100);
-            nine.setMinWidth(100);
             nine.setFont(Font.font("Arial",FontWeight.BOLD,35));
             nine.setOnAction(actionEvent -> {
                 change.change();
@@ -296,8 +290,6 @@ public class Calculator extends Application {
             });}
         Button zero = new Button("0"); {
             zero.getStyleClass().add("numbers");
-            zero.setMinHeight(100);
-            zero.setMinWidth(100);
             zero.setFont(Font.font("Arial",FontWeight.BOLD,35));
             zero.setOnAction(actionEvent -> {
                 change.change();
@@ -320,21 +312,23 @@ public class Calculator extends Application {
             controls.setId("controls");
             controls.setHgap(5);
             controls.setVgap(5);
-            controls.add(equals,0,3,2,1);
-            controls.add(addition,3,0);
-            controls.add(subtraction,3,1);
-            controls.add(multiplication,3,2);
-            controls.add(division,3,3);
-            controls.add(one,0,0);
-            controls.add(two,1,0);
-            controls.add(three,2,0);
-            controls.add(four,0,1);
-            controls.add(five,1,1);
-            controls.add(six,2,1);
-            controls.add(seven,0,2);
-            controls.add(eight,1,2);
-            controls.add(nine,2,2);
-            controls.add(zero,2,3);
+            controls.add(clear,0,0,2,1);
+            controls.add(delete,2,0,2,1);
+            controls.add(equals,0,4,2,1);
+            controls.add(addition,3,1);
+            controls.add(subtraction,3,2);
+            controls.add(multiplication,3,3);
+            controls.add(division,3,4);
+            controls.add(one,0,1);
+            controls.add(two,1,1);
+            controls.add(three,2,1);
+            controls.add(four,0,2);
+            controls.add(five,1,2);
+            controls.add(six,2,2);
+            controls.add(seven,0,3);
+            controls.add(eight,1,3);
+            controls.add(nine,2,3);
+            controls.add(zero,2,4);
         }
         VBox root = new VBox(); {
             root.setId("root");
